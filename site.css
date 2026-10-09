@@ -267,7 +267,7 @@ header nav a:hover span{transform:translateY(-100%)}
 .fgrid .full{grid-column:1/-1}
 .f label{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;
          color:var(--sage);margin-bottom:12px}
-.f input[type=text],.f input[type=email],.f textarea{
+.f input[type=text],.f input[type=email],.f input[type=tel],.f textarea{
   width:100%;background:transparent;border:0;border-bottom:1px solid rgba(127,148,136,.45);
   color:var(--paper);font-family:inherit;font-size:1.05rem;padding:10px 0;
   transition:border-color .35s var(--e)}
@@ -284,6 +284,19 @@ header nav a:hover span{transform:translateY(-100%)}
 .opts input:checked{border-color:var(--paper);box-shadow:inset 0 0 0 3.5px var(--paper)}
 .opts label:has(input:checked){background:var(--base);color:var(--paper)}
 .opts input:focus-visible{outline:2px solid var(--paper);outline-offset:3px}
+/* Siete áreas en fila serían una columna larguísima: rejilla que se adapta. */
+.opts-rejilla{grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+.opts-rejilla label{padding:16px 18px;font-size:.96rem}
+
+/* Las dos frases van juntas y se ajustan solas al ancho: sin saltos manuales. */
+.form-lead{font-family:var(--ogp-font-display);font-size:clamp(1.15rem,2.2vw,1.75rem);
+  line-height:1.25;letter-spacing:-.015em;color:var(--paper);
+  max-width:34ch;margin-bottom:clamp(26px,3.4vh,40px);text-wrap:balance}
+
+.gracias{margin-top:34px;padding:20px 24px;background:var(--base);
+  border-left:2px solid var(--mist);color:var(--paper);max-width:56ch}
+.gracias[hidden]{display:none}
+
 .form .send{margin-top:46px;display:flex;align-items:center;gap:26px;flex-wrap:wrap}
 .form .note{font-size:.85rem;color:var(--sage);max-width:40ch}
 
