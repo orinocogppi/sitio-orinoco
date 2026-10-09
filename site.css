@@ -374,6 +374,34 @@ header nav.open a span+span{display:none}
   .stk .card{height:auto;min-height:0;padding-block:38px;top:84px}
 }
 
+/* ── Objetivos táctiles: 44px donde se toca con el dedo ──────────
+   Medido a 320px: menú 30, logo 28, correo 21, campos 42, pie 19.      */
+@media(pointer:coarse),(max-width:900px){
+  .mbtn{min-height:44px;display:inline-flex;align-items:center;padding:10px}
+  header .in > a{display:inline-flex;align-items:center;min-height:44px}
+  .f input[type=text],.f input[type=email],.f input[type=tel]{padding:13px 0}
+  /* El pie apretaba las filas a 35px: se separan para que no se solapen. */
+  footer .fnav{gap:2px 22px}
+  footer .fnav a{display:inline-flex;align-items:center;min-height:44px}
+  footer .rows a{display:inline-flex;align-items:center;min-height:44px}
+  /* Aquí el subrayado va pegado al texto: se amplía el área sin moverlo. */
+  .cta .card-dir a{position:relative}
+  .cta .card-dir a::after{content:"";position:absolute;left:0;right:0;top:50%;
+    transform:translateY(-50%);height:44px}
+}
+
+/* ── Pantallas muy estrechas (320px y similares) ─────────────────── */
+@media(max-width:360px){
+  .wrap{width:min(1500px,100% - 7vw)}
+  :root{--gutter:max(3.5vw,calc((100vw - 1500px) / 2))}
+  .hero h1{font-size:clamp(1.75rem,8.6vw,2.2rem)}
+  .claim-sub{font-size:1rem}
+  .cta-btn{width:100%;justify-content:center;padding:17px 18px}
+  .stk .card{padding:26px 20px}
+  .opts label{padding:15px 16px;font-size:.94rem}
+  .form-lead{font-size:1.1rem}
+}
+
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
   #pre{display:none}.mani .w{color:var(--paper)!important}
