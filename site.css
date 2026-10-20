@@ -78,6 +78,9 @@ p{margin:0} a{color:inherit;text-decoration:none}
 .lbl{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--sage);display:block}
 .ref{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:12px;letter-spacing:-.01em}
 
+/* La cabecera va fija: sin esto tapa el título al saltar desde el menú. */
+:where(section,div,nav)[id]{scroll-margin-top:clamp(84px,11vh,120px)}
+
 .grain{position:fixed;inset:-50%;z-index:9998;pointer-events:none;opacity:.05;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
   animation:gr 7s steps(5) infinite}
@@ -207,25 +210,38 @@ header nav a:hover span{transform:translateY(-100%)}
 .two p{color:var(--mist);max-width:40ch}
 .two p+p{margin-top:18px}
 
+/* Servicios en banda horizontal */
+.hz{position:relative;height:420vh}
+.hz .pin{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;flex-direction:column;
+  justify-content:center;gap:clamp(34px,5vh,60px);
+  padding-top:clamp(92px,11vh,136px);padding-bottom:clamp(36px,5vh,72px)}
+.hz .track{display:flex;gap:3vw;padding-inline:var(--gutter);will-change:transform}
+.pan{flex:0 0 clamp(300px,34vw,520px);height:clamp(370px,54vh,560px);position:relative;
+     overflow:hidden;background:var(--deep);border:1px solid rgba(127,148,136,.2)}
+.pan canvas{position:absolute;inset:0;width:100%;height:100%;transition:transform .8s var(--e)}
+.pan:hover canvas{transform:scale(1.07)}
+.pan .ov{position:absolute;inset:0;padding:clamp(30px,2.5vw,42px);display:flex;flex-direction:column;z-index:2;
+         overflow:hidden}
+.pan .ov::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(to top,rgba(8,15,13,.95),rgba(8,15,13,.25) 68%)}
+.pan h3{font-size:clamp(1.35rem,2.3vw,1.95rem);line-height:1.12;margin-top:auto;max-width:16ch}
+.pan .s{color:var(--mist);font-size:.9rem;margin-top:14px;max-width:36ch}
+.pan .s+.s{margin-top:12px}
+.hz .head{padding-inline:var(--gutter);flex:0 0 auto}
+.hz .head h2{font-size:clamp(1.7rem,4vw,3.3rem);line-height:1.06;margin-top:14px}
+
 /* Sectores apilados */
 .stk{padding:clamp(28px,4vh,56px) 0 clamp(44px,6vh,88px)}
 .stk-head{margin-bottom:clamp(42px,6vh,86px)}
 .stk-head h2{font-size:clamp(1.7rem,4vw,3.3rem);line-height:1.06;margin-top:14px}
-/* Con seis áreas de varios párrafos, el apilado pegajoso tapaba el texto:
-   la tarjeta siguiente cubría a la anterior antes de poder leerla. Secuencia normal. */
-.stk .card{position:relative;padding:clamp(34px,4.2vw,72px);display:flex;
-           flex-direction:column;gap:clamp(22px,3vh,40px);margin-bottom:3px;
-           border:1px solid rgba(127,148,136,.25);overflow:hidden;background:var(--deep)}
-/* Seis áreas: el fondo alterna para que el apilado se lea */
-.stk .card:nth-of-type(odd){background:var(--deep)}
-.stk .card:nth-of-type(even){background:var(--base)}
-.stk .card:nth-of-type(3n){background:var(--mid)}
-/* El lienzo va al fondo; el contenido, por encima */
-.stk .card canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.5}
-.stk .card > :not(canvas){position:relative;z-index:1}
-.stk .card h3{font-size:clamp(1.7rem,4.6vw,3.9rem);max-width:17ch}
-.stk .card p{max-width:64ch;color:var(--mist);margin-top:20px}
-.stk .card .card-bd p:first-of-type{margin-top:24px}
+.stk .card{position:sticky;top:12vh;height:74vh;padding:clamp(34px,4.2vw,72px);display:flex;
+           flex-direction:column;justify-content:space-between;margin-bottom:5vh;
+           border:1px solid rgba(127,148,136,.25);will-change:transform;overflow:hidden}
+.stk .card:nth-of-type(1){background:var(--deep)}
+.stk .card:nth-of-type(2){background:var(--base)}
+.stk .card:nth-of-type(3){background:var(--mid)}
+.stk .card h3{font-size:clamp(1.8rem,5.6vw,4.8rem);max-width:16ch}
+.stk .card p{max-width:62ch;color:var(--mist);margin-top:22px}
 .stk .card .top{display:flex;justify-content:space-between}
 
 /* Principios */
@@ -267,7 +283,7 @@ header nav a:hover span{transform:translateY(-100%)}
 .fgrid .full{grid-column:1/-1}
 .f label{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;
          color:var(--sage);margin-bottom:12px}
-.f input[type=text],.f input[type=email],.f input[type=tel],.f textarea{
+.f input[type=text],.f input[type=email],.f textarea{
   width:100%;background:transparent;border:0;border-bottom:1px solid rgba(127,148,136,.45);
   color:var(--paper);font-family:inherit;font-size:1.05rem;padding:10px 0;
   transition:border-color .35s var(--e)}
@@ -284,19 +300,6 @@ header nav a:hover span{transform:translateY(-100%)}
 .opts input:checked{border-color:var(--paper);box-shadow:inset 0 0 0 3.5px var(--paper)}
 .opts label:has(input:checked){background:var(--base);color:var(--paper)}
 .opts input:focus-visible{outline:2px solid var(--paper);outline-offset:3px}
-/* Siete áreas en fila serían una columna larguísima: rejilla que se adapta. */
-.opts-rejilla{grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
-.opts-rejilla label{padding:16px 18px;font-size:.96rem}
-
-/* Las dos frases van juntas y se ajustan solas al ancho: sin saltos manuales. */
-.form-lead{font-family:var(--ogp-font-display);font-size:clamp(1.15rem,2.2vw,1.75rem);
-  line-height:1.25;letter-spacing:-.015em;color:var(--paper);
-  max-width:34ch;margin-bottom:clamp(26px,3.4vh,40px);text-wrap:balance}
-
-.gracias{margin-top:34px;padding:20px 24px;background:var(--base);
-  border-left:2px solid var(--mist);color:var(--paper);max-width:56ch}
-.gracias[hidden]{display:none}
-
 .form .send{margin-top:46px;display:flex;align-items:center;gap:26px;flex-wrap:wrap}
 .form .note{font-size:.85rem;color:var(--sage);max-width:40ch}
 
@@ -317,15 +320,23 @@ footer .rows a:hover{color:var(--paper)}
   header nav{gap:19px}
   header nav a{font-size:11px;letter-spacing:.1em}
   .fgrid{gap:28px}
+  .pan{flex:0 0 clamp(290px,38vw,460px)}
 }
 
-/* ── Tablet y abajo: menú compacto ─────────────────────────────── */
+/* ── Tablet y abajo: menú compacto, nada en banda horizontal ──── */
 @media(max-width:900px){
   header nav{display:none}.mbtn{display:block}
   header{padding:20px 0}
   .ed .row,.who-top,.cta .intro{grid-template-columns:1fr;gap:30px}
-  .fgrid .full{grid-column:1/-1}
+  .hz{height:auto}
+  .hz .pin{position:static;height:auto;display:block;padding:clamp(72px,11vh,140px) 0}
+  .hz .track{flex-direction:column;gap:18px;padding-inline:var(--gutter);transform:none!important}
+  .pan{flex:none;width:100%;height:auto;min-height:62vh}
+  .pan .ov{position:relative;inset:auto;min-height:62vh}
+  .hz .head{margin-bottom:clamp(30px,4.5vh,48px)}
+  .stk .card{height:auto;min-height:56vh;position:static;transform:none!important}
   .fgrid{grid-template-columns:1fr 1fr}
+  .fgrid .full{grid-column:1/-1}
   .hero .bot{margin-top:34px;gap:36px}
   .hero .in{padding-bottom:clamp(56px,7vh,80px)}
 }
@@ -340,7 +351,9 @@ footer .rows a:hover{color:var(--paper)}
   .led .ico{width:20px;height:20px}
   .led .ico i{width:20px}
   .pri .grid div{padding:24px 0 28px}
-  .stk .card{padding:30px 24px}
+  .stk .card{padding:30px 24px;min-height:0}
+  .pan .ov{padding:28px 24px}
+  .pan,.pan .ov{min-height:0}
   .cta .card-dir{padding-left:20px}
   footer .fnav{gap:16px 20px}
   footer .rows{gap:14px}
@@ -372,6 +385,8 @@ header nav.open a span+span{display:none}
 @media(max-height:620px) and (min-width:601px){
   .hero{min-height:auto;padding-top:clamp(96px,14vh,130px)}
   .stk .card{height:auto;min-height:0;padding-block:38px;top:84px}
+  .hz .pin{padding-top:84px;padding-bottom:28px}
+  .pan{height:clamp(300px,62vh,420px)}
 }
 
 /* ── Objetivos táctiles: 44px donde se toca con el dedo ──────────
@@ -379,7 +394,7 @@ header nav.open a span+span{display:none}
 @media(pointer:coarse),(max-width:900px){
   .mbtn{min-height:44px;display:inline-flex;align-items:center;padding:10px}
   header .in > a{display:inline-flex;align-items:center;min-height:44px}
-  .f input[type=text],.f input[type=email],.f input[type=tel]{padding:13px 0}
+  .f input[type=text],.f input[type=email]{padding:13px 0}
   /* El pie apretaba las filas a 35px: se separan para que no se solapen. */
   footer .fnav{gap:2px 22px}
   footer .fnav a{display:inline-flex;align-items:center;min-height:44px}
@@ -393,13 +408,11 @@ header nav.open a span+span{display:none}
 /* ── Pantallas muy estrechas (320px y similares) ─────────────────── */
 @media(max-width:360px){
   .wrap{width:min(1500px,100% - 7vw)}
-  :root{--gutter:max(3.5vw,calc((100vw - 1500px) / 2))}
   .hero h1{font-size:clamp(1.75rem,8.6vw,2.2rem)}
   .claim-sub{font-size:1rem}
   .cta-btn{width:100%;justify-content:center;padding:17px 18px}
   .stk .card{padding:26px 20px}
   .opts label{padding:15px 16px;font-size:.94rem}
-  .form-lead{font-size:1.1rem}
 }
 
 @media(prefers-reduced-motion:reduce){
