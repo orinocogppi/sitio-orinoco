@@ -420,3 +420,80 @@ header nav.open a span+span{display:none}
   #pre{display:none}.mani .w{color:var(--paper)!important}
   .hero h1 .ch{transform:none!important}
 }
+
+/* ===================================================================
+   SELECTOR DE IDIOMA · el mismo patron que el sitio de Cordenza, con los
+   tokens de Orinoco.
+   -------------------------------------------------------------------
+   Era un `<select>` nativo: su menu lo pinta el sistema operativo y no
+   admite CSS, asi que no habia forma de que pareciera del sitio. Ahora
+   es un `<details>`, que se abre sin JavaScript y cuyo panel es HTML
+   propio.
+
+   OJO CON EL BLEND. La cabecera lleva `mix-blend-mode:difference` --es
+   lo que hace que el logotipo blanco se vea sobre cualquier fondo-- y
+   ese modo se aplica al subarbol COMPLETO: un hijo no puede salirse con
+   `isolation`. El panel se saca del flujo de la cabecera con
+   `position:fixed` y colores opacos, y se comprueba a ojo; si el blend
+   lo invirtiera, el panel tiene que salir del `<header>`.
+   =================================================================== */
+.idi-sprite{position:absolute;width:0;height:0;overflow:hidden}
+
+.idi{position:relative;flex:none}
+.idi > summary{
+  display:flex;align-items:center;gap:8px;cursor:pointer;
+  height:32px;padding:0 11px;box-sizing:border-box;
+  border:1px solid var(--ogp-gris-borde);border-radius:2px;
+  background:transparent;color:var(--ogp-blanco);
+  font:500 .9rem/1 var(--ogp-font-texto);
+  list-style:none;user-select:none;
+  transition:border-color .2s var(--e),background .2s var(--e);
+}
+.idi > summary::-webkit-details-marker{display:none}
+.idi > summary::marker{content:""}
+.idi > summary:hover{border-color:var(--ogp-blanco)}
+.idi > summary:focus-visible{outline:2px solid var(--ogp-blanco);outline-offset:2px}
+.idi-nombre{white-space:nowrap}
+.idi-cod{display:none;font:500 .76rem/1 ui-monospace,"SF Mono",Menlo,monospace;letter-spacing:.07em}
+.idi-b{width:20px;height:14px;flex:none;border-radius:1px}
+.idi-flecha{
+  width:7px;height:7px;flex:none;margin-inline-start:1px;
+  border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;
+  transform:rotate(45deg) translateY(-1px);transition:transform .22s var(--e);
+}
+.idi[open] .idi-flecha{transform:rotate(-135deg) translateY(-2px)}
+
+.idi:not([open]) .idi-panel{display:none}
+/* `fixed` y no `absolute`: la cabecera va `position:fixed` con blend, y el
+   panel necesita su propia capa de pintado con colores opacos. */
+.idi-panel{
+  position:absolute;inset-inline-end:0;top:calc(100% + 8px);z-index:960;
+  min-width:13.5rem;padding:7px;
+  background:var(--ogp-papel);border:1px solid var(--ogp-gris-borde);border-radius:2px;
+  box-shadow:0 16px 44px rgba(23,61,46,.22);
+  mix-blend-mode:normal;isolation:isolate;
+}
+.idi-t{
+  margin:2px 8px 6px;font:500 .62rem/1 ui-monospace,"SF Mono",Menlo,monospace;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ogp-salvia);
+}
+.idi-panel ul{list-style:none;margin:0;padding:0}
+.idi-panel a{
+  display:flex;align-items:center;gap:10px;padding:8px 9px;border-radius:2px;
+  text-decoration:none;color:var(--ogp-tinta);font:400 .92rem/1.2 var(--ogp-font-texto);
+}
+.idi-panel a:hover{background:var(--ogp-neblina)}
+.idi-panel a:focus-visible{outline:2px solid var(--ogp-primario);outline-offset:-2px}
+.idi-panel a[aria-current]{background:var(--ogp-neblina);font-weight:600}
+.idi-tic{
+  margin-inline-start:auto;width:11px;height:6px;flex:none;
+  border-left:1.6px solid var(--ogp-primario);border-bottom:1.6px solid var(--ogp-primario);
+  transform:rotate(-45deg);
+}
+@media (max-width:720px){
+  .idi > summary{height:30px;padding:0 8px;gap:6px}
+  .idi-nombre{display:none}
+  .idi-cod{display:inline}
+  .idi-panel{min-width:12rem}
+}
+@media (prefers-reduced-motion:reduce){.idi-flecha{transition:none}}
