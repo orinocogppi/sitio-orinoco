@@ -1,0 +1,37 @@
+:root{
+  /* Base */
+  --ogp-chesterfield:#173D2E;
+  --ogp-chesterfield-700:#2F5A47;
+  --ogp-chesterfield-900:#0F2019;
+  --ogp-gris-verdoso:#7F9488;
+  --ogp-salvia:#5C6E64;
+  --ogp-neblina:#C9D4CD;
+  --ogp-neblina-50:#E4EAE6;
+  --ogp-papel:#F4F3EF;
+  --ogp-blanco:#FFFFFF;
+  --ogp-tinta:#1F2A25;
+  --ogp-tinta-2:#3A463F;
+  --ogp-gris-borde:#D5D8D2;
+  --ogp-gris-campo:#B8C2BC;
+  --ogp-alerta:#9B3B2E;
+  --ogp-alerta-50:#F3E3DF;
+  --ogp-alerta-texto:#7A2E23;
+  /* Semánticos */
+  --ogp-primario:var(--ogp-chesterfield);
+  --ogp-primario-hover:var(--ogp-chesterfield-700);
+  --ogp-secundario:var(--ogp-gris-verdoso);
+  --ogp-texto:var(--ogp-tinta);
+  --ogp-texto-2:var(--ogp-tinta-2);
+  --ogp-texto-sec:var(--ogp-salvia);
+  --ogp-texto-invertido:var(--ogp-blanco);
+  --ogp-texto-invertido-sec:var(--ogp-neblina);
+  --ogp-fondo:var(--ogp-papel);
+  --ogp-superficie:var(--ogp-blanco);
+  --ogp-superficie-oscura:var(--ogp-chesterfield);
+  --ogp-borde:var(--ogp-gris-borde);
+  --ogp-exito-fondo:var(--ogp-neblina-50);
+  --ogp-exito-texto:var(--ogp-chesterfield);
+  --ogp-error-fondo:var(--ogp-alerta-50);
+  --ogp-error-texto:var(--ogp-alerta-texto);
+  --ogp-foco:var(--ogp-gris-verdoso);
+}

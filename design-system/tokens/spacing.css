@@ -1,0 +1,9 @@
+:root{
+  --ogp-s-1:4px; --ogp-s-2:8px; --ogp-s-3:12px; --ogp-s-4:16px; --ogp-s-5:24px;
+  --ogp-s-6:32px; --ogp-s-7:40px; --ogp-s-8:64px; --ogp-s-9:104px;
+  --ogp-radio:2px; --ogp-radio-0:0;
+  --ogp-borde-fino:1px; --ogp-borde-medio:2px;
+  --ogp-contenido-max:1200px;
+  --ogp-sombra-papel:0 20px 40px rgba(15,32,25,0.18); /* solo mockups impresos */
+  --ogp-transicion:160ms cubic-bezier(0.2,0,0,1);
+}

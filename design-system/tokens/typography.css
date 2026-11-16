@@ -1,0 +1,14 @@
+:root{
+  --ogp-font-display:"Belleza","Optima","Candara",sans-serif;
+  --ogp-font-texto:"Mulish","Helvetica Neue",Arial,sans-serif;
+  /* Escala web (px) */
+  --ogp-fs-display:64px; --ogp-lh-display:1.05;
+  --ogp-fs-h1:48px; --ogp-lh-h1:1.1;
+  --ogp-fs-h2:36px; --ogp-lh-h2:1.15;
+  --ogp-fs-h3:26px; --ogp-lh-h3:1.25;
+  --ogp-fs-lead:20px; --ogp-lh-lead:1.55;
+  --ogp-fs-body:16px; --ogp-lh-body:1.6;
+  --ogp-fs-small:14px; --ogp-lh-small:1.5;
+  --ogp-fs-label:12px; --ogp-ls-label:0.24em;
+  --ogp-fw-regular:400; --ogp-fw-semibold:600; --ogp-fw-bold:700;
+}
